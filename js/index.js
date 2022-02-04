@@ -12,32 +12,38 @@ L.tileLayer(
     attribution: '&copy; <a href="https://osm.org/copyright">\
     OpenStreetMap</a> contributors, &copy;\
     <a href="https://carto.com/attribution">CARTO</a>',
-    //minZoom: 12
+    minZoom: 12
 }).addTo(map);
 
 /* define streets variable */
 var streets;
 
+
+streets = L.geoJSON(streets, {
+    style: style,
+    onEachFeature: onEachFeature
+}).addTo(map);
+
+
+
 /* function to change street style based on attribute */
 function getColor(d) {
-    return d > 1000 ? '#800026' :
-           d > 500  ? '#BD0026' :
-           d > 200  ? '#E31A1C' :
-           d > 100  ? '#FC4E2A' :
-           d > 50   ? '#FD8D3C' :
-           d > 20   ? '#FEB24C' :
-           d > 10   ? '#FED976' :
-                      '#FFEDA0';
+    return d > 1636  ? '#d7191c' :
+           d > 409   ? '#fdae61' :
+           d > 161   ? '#ffffbf' :
+           d > 69   ? '#abdda4' :
+                      '#2b83ba';
 }
 
 function style(feature) {
     return {
-        weight: 2,
+        weight: 3,
         opacity: 0.65,
-        color: getColor(feature.properties.ATTRIBUTE)
+        color: getColor(feature.properties.TOTAL)
     };
 }
 
+/*listener function for highlighting mouse-over streets */
 function highlightFeature(e) {
     var layer = e.target;
 
@@ -60,6 +66,7 @@ function resetHighlight(e) {
     info.update();
 }
 
+
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 }
@@ -72,16 +79,8 @@ function onEachFeature(feature, layer) {
     });
 }
 
-var myStyle = {
-    "color": "#666",
-    "weight": 5,
-    "opacity": 0
-};
 
-streets = L.geoJSON(streets, {
-    style: myStyle,
-    onEachFeature: onEachFeature
-}).addTo(map);
+
 
 var info = L.control();
 
@@ -91,11 +90,12 @@ info.onAdd = function (map) {
     return this._div;
 };
 
-// method that we will use to update the control based on feature properties passed
+// method to update control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>---------- Guelph Crime ----------</h4>' +  (props ?
-        '<b>' + props.STREET + '</b><br />' + props.ATTRIBUTE + ' incidents per year</sup>'
+    this._div.innerHTML = '<h4>-------------- Guelph Crime --------------</h4>' +  (props ?
+        '<b>' + props.LABEL + '</b><br />' + props.TOTAL + ' total incidents (2014-2020)</sup>'
         : '');
 };
 
 info.addTo(map);
+
