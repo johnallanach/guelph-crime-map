@@ -1,27 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Guelph Crime Map</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
+<html lang="en">
 
-  <!-- Load Leaflet code library: see http://leafletjs.com/download.html -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
-  <link rel="stylesheet" href="css/style.css">
+  <head>
+    <title>Guelph Crime Map</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
 
-</head>
-
-<body>
-
-  <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">Guelph Crime Map</div>
-  <div id="map"></div>
-
-  <!-- Create the interactive map content with JavaScript (.js) -->
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  <script src="js/streets.js"></script>
-  <script src="js/index.js"></script>
-
-</body>
+  <body>
+    <div id="map"></div>
+    <script src="js/script.js"></script>
+  </body>
 
 </html>
