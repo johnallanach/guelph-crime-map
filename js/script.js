@@ -4,10 +4,10 @@ let config = {
   maxZoom: 18,
 };
 // start magnification
-const zoom_init = 14.5;
+const zoom_init = 12.5;
 // start co-ordinates
-const lat = 43.543250939895174;
-const lng = -80.24241781541144;
+const lat = 43.53;
+const lng = -80.24;
 
 // call map
 const map = L.map("map", config).setView([lat, lng], zoom_init);
