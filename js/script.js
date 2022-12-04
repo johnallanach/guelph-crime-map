@@ -27,7 +27,7 @@ L.tileLayer(
 var streets;
 
 // add geojson by fetch
-fetch("data/streets-dissolved.geojson")
+fetch("data/gps.geojson")
 .then(function (response) {
   return response.json();
 })
